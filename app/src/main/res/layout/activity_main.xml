@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="school.bio.MainActivity"
+    android:gravity="center_vertical"
+    android:foregroundGravity="center"
+    android:background="@color/background">
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:id="@+id/dankovButton"
+        android:textColor="@color/white"
+        android:background="@drawable/menu_buttons_red"
+        android:text="Bezstavovce vo vodnom \n prostredí"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:id="@+id/buttonTohoDruheho"
+        android:background="@drawable/menu_buttons_red"
+        android:textColor="@color/white"
+        android:text="Organizmy v \n domácnostiach"
+        android:layout_below="@+id/dankovButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="65dp"
+        android:id="@+id/test"
+        android:background="@drawable/menu_buttons_red"
+        android:textColor="@color/white"
+        android:text="Test"
+        android:layout_below="@+id/buttonTohoDruheho"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"/>
+
+
+
+</RelativeLayout>

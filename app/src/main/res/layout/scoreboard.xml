@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="#474f58"
+    android:weightSum="1">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/player1"
+        android:text="Jednotku prosím ( ͡° ͜ʖ ͡°)"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/scoreTW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="75sp"
+        android:text="15"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <ProgressBar
+        android:id="@+id/fakeProgressJustBecauseIcan"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="266dp"
+        android:layout_height="266dp"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:progress="0"
+        android:max="150000"
+        android:progressDrawable="@drawable/fake_progress"
+        android:layout_marginBottom="10dp" />
+
+    <ProgressBar
+        android:id="@+id/progressbarScore"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:progress="0"
+        android:max="150000"
+        android:progressDrawable="@drawable/scoreboard_progressbar"
+        android:layout_marginBottom="10dp" />
+
+
+
+
+    <TextView
+        android:layout_width="900dp"
+        android:layout_height="2dp"
+        android:id="@+id/buttom_line"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"/>
+
+</RelativeLayout>
+
+
