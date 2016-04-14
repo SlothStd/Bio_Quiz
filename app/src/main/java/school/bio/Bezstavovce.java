@@ -33,6 +33,7 @@ public class Bezstavovce extends Activity {
     ImageView image;
     CountDownTimer cdTimer, answerTimer, additionalTime;
     String firstS, secondS, thirdS, fourthS;
+    int imageCount;
 
 
     @Override
@@ -78,6 +79,8 @@ public class Bezstavovce extends Activity {
         obrazky.add(R.drawable.bezstavovce_skebla_rybnicna);
         obrazky.add(R.drawable.bezstavovce_stvorhranka_smrtelna);
         obrazky.add(R.drawable.bezstavovce_terebellidae);
+
+        imageCount = 12; //TODO: Sem napis kolko ich ma byt
 
         nazvy = new ArrayList<>();
         nazvy.add("Acropora Millepora");
@@ -213,6 +216,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -223,6 +227,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -312,6 +317,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -322,6 +328,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -413,6 +420,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -423,6 +431,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -515,6 +524,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -525,6 +535,7 @@ public class Bezstavovce extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Bezstavovce.this, Score.class);
+                                score.putExtra("size", imageCount);
                                 Bezstavovce.this.finish();
                                 startActivity(score);
                             }
@@ -567,6 +578,7 @@ public class Bezstavovce extends Activity {
                     theGame();
                 } else {
                     Intent score = new Intent(Bezstavovce.this, Score.class);
+                    score.putExtra("size", imageCount);
                     Bezstavovce.this.finish();
                     startActivity(score);
                 }
