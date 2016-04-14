@@ -55,8 +55,6 @@ public class Score extends Activity {
         score *= 10000;
         scoreTW.setTypeface(verano);
 
-        Toast.makeText(Score.this, "The score at the end of the game is " + score, Toast.LENGTH_SHORT).show();
-
         pbWidth = progressBarScore.getWidth();
 
         timer = new CountDownTimer(700, 1000) {

@@ -109,16 +109,30 @@ public class Bezstavovce extends Activity {
         randnazvy.add("Krtko");
         randnazvy.add("Slimák");
         randnazvy.add("Osa");
-        randnazvy.add("Kresáňová");
-        randnazvy.add("Martinkovičová");
+        randnazvy.add("Salamandra škvrnitá");
+        randnazvy.add("Krokodíl morský");
         randnazvy.add("Zemiak");
         randnazvy.add("kôň");
         randnazvy.add("antilopa");
         randnazvy.add("medveď");
-        randnazvy.add("Hlavinková");
+        randnazvy.add("Mola slncovitá");
         randnazvy.add("Pes");
-        randnazvy.add("Tvoja mama");
-        randnazvy.add("Moja mama");
+        randnazvy.add("Kazuár veľkoprilbý");
+        randnazvy.add("Petromyzontidai");
+        randnazvy.add("Diplorhina");
+        randnazvy.add("Sliznatka morská");
+        randnazvy.add("Lampetra Fluviatilis");
+        randnazvy.add("Orol skalný");
+        randnazvy.add("Gnathostomata");
+        randnazvy.add("Archeopteryx");
+        randnazvy.add("Amur biely");
+        randnazvy.add("Býčko nahotemenný");
+        randnazvy.add("Hlaváč pásoplutvý");
+        randnazvy.add("Hrúzovec sieťovaný");
+        randnazvy.add("Lieň sliznatý");
+        randnazvy.add("mlok horský");
+        randnazvy.add("kunka červenobruchá");
+        randnazvy.add("hrabavka škvrnitá");
 
         ///↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ priradovanie do arraye ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑///
 
