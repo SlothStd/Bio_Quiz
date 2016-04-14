@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.TypedValue;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -24,11 +26,9 @@ public class Score extends Activity {
 
     ProgressBar progressBarScore;
     ObjectAnimator animation;
-    int score,pbScore, pbWidth;
-    String scoreValue;
-    RelativeLayout relativeLayout;
+    int score, pbWidth;
     CountDownTimer timer;
-    TextView scoreTW;
+    TextView scoreTW, scoreboard, slothstd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +36,24 @@ public class Score extends Activity {
         setContentView(R.layout.scoreboard);
 
         progressBarScore = (ProgressBar) findViewById(R.id.progressbarScore);
+
         scoreTW = (TextView) findViewById(R.id.scoreTW);
+        scoreboard = (TextView) findViewById(R.id.scoreboard);
+        slothstd = (TextView) findViewById(R.id.slothstd);
+
+        Typeface canter = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/canter.otf");   // fonterino
+        Typeface verano = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Verano.otf");   // -- || --
+
+        scoreboard.setTextSize(TypedValue.COMPLEX_UNIT_SP, 80);
+        scoreboard.setTypeface(canter);
+
+        slothstd.setTypeface(canter);
 
         SharedPreferences preferences = getSharedPreferences("PlayerScore", MODE_PRIVATE);
         score = preferences.getInt("score",0);
         scoreTW.setText(String.valueOf(score));
         score *= 10000;
+        scoreTW.setTypeface(verano);
 
         Toast.makeText(Score.this, "The score at the end of the game is " + score, Toast.LENGTH_SHORT).show();
 
@@ -57,7 +69,7 @@ public class Score extends Activity {
             public void onFinish() {
 
                 animation = ObjectAnimator.ofInt(progressBarScore, "progress", 0, score);
-                animation.setDuration(2000); //in milliseconds bruv
+                animation.setDuration(3000); //in milliseconds bruv
                 animation.setInterpolator(new DecelerateInterpolator());
                 animation.start();
             }

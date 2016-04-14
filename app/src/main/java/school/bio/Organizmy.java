@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.TypedValue;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,22 +19,20 @@ import android.widget.ProgressBar;
 import java.util.ArrayList;
 import java.util.Random;
 
-/**
- * Created by Daniel on 22-Mar-16.
- */
 public class Organizmy extends Activity {
 
-    Button first, second, third, fourth;
-    ArrayList<Integer> carLogos;
-    ArrayList<String> carNames, randCarNames;
+    Button first, second, third, fourth, nothing;
+    ArrayList<Integer> obrazky;
+    ArrayList<String> nazvy, randnazvy;
     ArrayList<Button> buttonAL;
     ProgressBar time;
     ObjectAnimator animation;
     Integer chosenImage, chosenPos, score;
     String chosenName, checkString, chosenString;
     ImageView image;
-    CountDownTimer cdTimer, answerTimer;
+    CountDownTimer cdTimer, answerTimer, additionalTime;
     String firstS, secondS, thirdS, fourthS;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,18 @@ public class Organizmy extends Activity {
         fourth = (Button) findViewById(R.id.btn4);
 
         image = (ImageView) findViewById(R.id.imageView);
+        image.bringToFront();
         time = (ProgressBar) findViewById(R.id.timePB);
+
+        Typeface canter = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/canter.otf");
+        first.setTypeface(canter);
+        first.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+        second.setTypeface(canter);
+        second.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+        third.setTypeface(canter);
+        third.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
+        fourth.setTypeface(canter);
+        fourth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 35);
 
         buttonAL = new ArrayList<>();
         buttonAL.add(first);
@@ -53,60 +64,60 @@ public class Organizmy extends Activity {
         buttonAL.add(third);
         buttonAL.add(fourth);
 
-        carLogos = new ArrayList<>();
-        carLogos.add(R.drawable.bezstavovce_acropora_millepora);
-        carLogos.add(R.drawable.bezstavovce_dazdovka);
-        carLogos.add(R.drawable.bezstavovce_meduza_vlasata);
-        carLogos.add(R.drawable.bezstavovce_motolica_pecenova);
-        carLogos.add(R.drawable.bezstavovce_pasomnica_dlha);
-        carLogos.add(R.drawable.bezstavovce_perovnik);
-        carLogos.add(R.drawable.bezstavovce_pijavica_lekarska);
-        carLogos.add(R.drawable.bezstavovce_ploskula_mliecna);
-        carLogos.add(R.drawable.bezstavovce_rak_riecny);
-        carLogos.add(R.drawable.bezstavovce_skebla_rybnicna);
-        carLogos.add(R.drawable.bezstavovce_stvorhranka_smrtelna);
-        carLogos.add(R.drawable.bezstavovce_terebellidae);
+        obrazky = new ArrayList<>();
+        obrazky.add(R.drawable.bezstavovce_acropora_millepora);
+        obrazky.add(R.drawable.bezstavovce_dazdovka);
+        obrazky.add(R.drawable.bezstavovce_meduza_vlasata);
+        obrazky.add(R.drawable.bezstavovce_motolica_pecenova);
+        obrazky.add(R.drawable.bezstavovce_pasomnica_dlha);
+        obrazky.add(R.drawable.bezstavovce_perovnik);
+        obrazky.add(R.drawable.bezstavovce_pijavica_lekarska);
+        obrazky.add(R.drawable.bezstavovce_ploskula_mliecna);
+        obrazky.add(R.drawable.bezstavovce_rak_riecny);
+        obrazky.add(R.drawable.bezstavovce_skebla_rybnicna);
+        obrazky.add(R.drawable.bezstavovce_stvorhranka_smrtelna);
+        obrazky.add(R.drawable.bezstavovce_terebellidae);
 
-        carNames = new ArrayList<>();
-        carNames.add("Acropora Millepora");
-        carNames.add("Dážďovka");
-        carNames.add("Medúza Vlasatá");
-        carNames.add("Motolica Pečeňová");
-        carNames.add("Pásomnica Dlhá");
-        carNames.add("Perovník");
-        carNames.add("Pijavica Lekárska");
-        carNames.add("Ploskula Mliečna");
-        carNames.add("Rad Riečny");
-        carNames.add("Šekbla Rybničná");
-        carNames.add("Štvorhranka Smrteľná");
-        carNames.add("Terebellidae");
+        nazvy = new ArrayList<>();
+        nazvy.add("Acropora Millepora");
+        nazvy.add("Dážďovka");
+        nazvy.add("Medúza Vlasatá");
+        nazvy.add("Motolica Pečeňová");
+        nazvy.add("Pásomnica Dlhá");
+        nazvy.add("Perovník");
+        nazvy.add("Pijavica Lekárska");
+        nazvy.add("Ploskula Mliečna");
+        nazvy.add("Rak Riečny");
+        nazvy.add("Šekbla Rybničná");
+        nazvy.add("Štvorhranka Smrteľná");
+        nazvy.add("Terebellidae");
 
-        randCarNames = new ArrayList<>();
-        randCarNames.add("Acropora Millepora");
-        randCarNames.add("Dážďovka");
-        randCarNames.add("Medúza Vlasatá");
-        randCarNames.add("Motolica Pečeňová");
-        randCarNames.add("Pásomnica Dlhá");
-        randCarNames.add("Perovník");
-        randCarNames.add("Pijavica Lekárska");
-        randCarNames.add("Ploskula Mliečna");
-        randCarNames.add("Rad Riečny");
-        randCarNames.add("Šekbla Rybničná");
-        randCarNames.add("Štvorhranka Smrteľná");
-        randCarNames.add("Terebellidae");
-        randCarNames.add("Krtko");
-        randCarNames.add("Slimák");
-        randCarNames.add("Osa");
-        randCarNames.add("Kresáňová");
-        randCarNames.add("Martinkovičová");
-        randCarNames.add("Zemiak");
-        randCarNames.add("kôň");
-        randCarNames.add("antilopa");
-        randCarNames.add("medveď");
-        randCarNames.add("Hlavinková");
-        randCarNames.add("Pes");
-        randCarNames.add("Tvoja mama");
-        randCarNames.add("Moja mama");
+        randnazvy = new ArrayList<>();
+        randnazvy.add("Acropora Millepora");
+        randnazvy.add("Dážďovka");
+        randnazvy.add("Medúza Vlasatá");
+        randnazvy.add("Motolica Pečeňová");
+        randnazvy.add("Pásomnica Dlhá");
+        randnazvy.add("Perovník");
+        randnazvy.add("Pijavica Lekárska");
+        randnazvy.add("Ploskula Mliečna");
+        randnazvy.add("Rak Riečny");
+        randnazvy.add("Šekbla Rybničná");
+        randnazvy.add("Štvorhranka Smrteľná");
+        randnazvy.add("Terebellidae");
+        randnazvy.add("Krtko");
+        randnazvy.add("Slimák");
+        randnazvy.add("Osa");
+        randnazvy.add("Kresáňová");
+        randnazvy.add("Martinkovičová");
+        randnazvy.add("Zemiak");
+        randnazvy.add("kôň");
+        randnazvy.add("antilopa");
+        randnazvy.add("medveď");
+        randnazvy.add("Hlavinková");
+        randnazvy.add("Pes");
+        randnazvy.add("Tvoja mama");
+        randnazvy.add("Moja mama");
 
         ///↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ priradovanie do arraye ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑///
 
@@ -123,7 +134,6 @@ public class Organizmy extends Activity {
                 animation.cancel();
 
                 SharedPreferences preferences = getSharedPreferences("PlayerScore", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
 
                 try {
                     score = preferences.getInt("score", 0);
@@ -184,7 +194,7 @@ public class Organizmy extends Activity {
                             score++;
                             editor.putInt("score", score).apply();
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -194,7 +204,7 @@ public class Organizmy extends Activity {
 
                         } else {
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -283,7 +293,7 @@ public class Organizmy extends Activity {
                             score++;
                             editor.putInt("score", score).apply();
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -293,7 +303,7 @@ public class Organizmy extends Activity {
 
                         } else {
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -324,7 +334,6 @@ public class Organizmy extends Activity {
                 animation.cancel();
 
                 SharedPreferences preferences = getSharedPreferences("PlayerScore", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
 
                 try {
                     score = preferences.getInt("score", 0);
@@ -385,7 +394,7 @@ public class Organizmy extends Activity {
                             score++;
                             editor.putInt("score", score).apply();
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -395,7 +404,7 @@ public class Organizmy extends Activity {
 
                         } else {
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -487,7 +496,7 @@ public class Organizmy extends Activity {
                             score++;
                             editor.putInt("score", score).apply();
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -497,7 +506,7 @@ public class Organizmy extends Activity {
 
                         } else {
 
-                            if (carNames.size() > 0) {
+                            if (nazvy.size() > 0) {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
@@ -519,20 +528,19 @@ public class Organizmy extends Activity {
 
     private void theGame() {
 
+
+        time.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         fourth.setBackgroundResource(R.drawable.buttons);
         first.setBackgroundResource(R.drawable.buttons);
         second.setBackgroundResource(R.drawable.buttons);
         third.setBackgroundResource(R.drawable.buttons);
 
-
-        time.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
         animation = ObjectAnimator.ofInt(time, "progress", 0, 500);
-        animation.setDuration(5000); //in milliseconds bruv
-        animation.setInterpolator(new DecelerateInterpolator());
+        animation.setDuration(6000); //in milliseconds bruv
+        animation.setInterpolator(new LinearInterpolator());
         animation.start();
 
-
-        cdTimer = new CountDownTimer(5000, 1000) {
+        cdTimer = new CountDownTimer(6000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
@@ -540,7 +548,7 @@ public class Organizmy extends Activity {
 
             public void onFinish() {
 
-                if (carNames.size() > 0) {
+                if (nazvy.size() > 0) {
                     theGame();
                 } else {
                     Intent score = new Intent(Organizmy.this, Score.class);
@@ -550,9 +558,6 @@ public class Organizmy extends Activity {
             }
         }.start();
 
-
-        SharedPreferences preferences = getSharedPreferences("PlayerScore", MODE_PRIVATE);
-//        Toast.makeText(Organizmy.this, "Score is " + preferences.getInt("score", 0), Toast.LENGTH_SHORT).show();
 
         firstPart();
         leftOverButtons();
@@ -564,10 +569,10 @@ public class Organizmy extends Activity {
         Integer chosenButtonNumber;
         Random position = new Random();
 
-        chosenPos = position.nextInt(carLogos.size()); //Randomne vybere cislo na branie z arraye (velkost podla velkosti arraye)
-        chosenImage = carLogos.get(chosenPos); //vybere obrazok prislusny cislu
+        chosenPos = position.nextInt(obrazky.size()); //Randomne vybere cislo na branie z arraye (velkost podla velkosti arraye)
+        chosenImage = obrazky.get(chosenPos); //vybere obrazok prislusny cislu
         image.setImageResource(chosenImage); //setne obrazok
-        chosenName = carNames.get(chosenPos); //vybere string prisny cislu
+        chosenName = nazvy.get(chosenPos); //vybere string prisny cislu
 
 
         Random button = new Random();
@@ -578,8 +583,8 @@ public class Organizmy extends Activity {
         chosenString = chosenName;
 
         buttonAL.remove(chosenButton);
-        carLogos.remove(chosenImage);
-        carNames.remove(chosenName);
+        obrazky.remove(chosenImage);
+        nazvy.remove(chosenName);
 
     }
 
@@ -588,9 +593,7 @@ public class Organizmy extends Activity {
 
 
         for (int i = 0; i < 3; i++) {
-
             setterinoLefterinoButterinoMethoderino();
-
         }
 
         buttonAL.add(first);     // opatovne pridanie
@@ -617,8 +620,8 @@ public class Organizmy extends Activity {
 
         Random randString = new Random();
         try {
-            number = randString.nextInt(randCarNames.size());
-            chosenString = randCarNames.get(number);
+            number = randString.nextInt(randnazvy.size());
+            chosenString = randnazvy.get(number);
 
             if (firstS.equals(chosenString) || secondS.equals(chosenString) || thirdS.equals(chosenString) || fourthS.equals(chosenString)) {
                 setterinoLefterinoButterinoMethoderino();
@@ -627,15 +630,18 @@ public class Organizmy extends Activity {
                 buttonAL.remove(chosenButton); //vymaze uz pouzity button aby sa neprepisovali stringy
             }
 
-
         } catch (Exception e) {
         }
+
 
     }
 
 
     @Override
     public void onBackPressed() {
+
+        cdTimer.cancel();
+        animation.cancel();
 
         SharedPreferences preferences = getSharedPreferences("PlayerScore", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
