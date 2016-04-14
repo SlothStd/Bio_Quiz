@@ -9,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ProgressBar;
@@ -22,11 +23,11 @@ import org.w3c.dom.Text;
  * Created by Daniel on 28-Mar-16.
  */
 
-public class Score extends Activity {
+public class  Score extends Activity {
 
     ProgressBar progressBarScore;
     ObjectAnimator animation;
-    int score, pbWidth;
+    int score, pbWidth, imageCount;
     CountDownTimer timer;
     TextView scoreTW, scoreboard, slothstd;
 
@@ -48,6 +49,11 @@ public class Score extends Activity {
         scoreboard.setTypeface(canter);
 
         slothstd.setTypeface(canter);
+
+        imageCount = getIntent().getIntExtra("size", 0);
+        if (imageCount != 0){
+            ((ProgressBar) findViewById(R.id.progressbarScore)).setMax(imageCount * 10000);
+        }
 
         SharedPreferences preferences = getSharedPreferences("PlayerScore", MODE_PRIVATE);
         score = preferences.getInt("score",0);

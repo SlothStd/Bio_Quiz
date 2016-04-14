@@ -7,14 +7,17 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,6 +35,7 @@ public class Organizmy extends Activity {
     ImageView image;
     CountDownTimer cdTimer, answerTimer, additionalTime;
     String firstS, secondS, thirdS, fourthS;
+    int imageCount = 18;
 
 
     @Override
@@ -65,59 +69,83 @@ public class Organizmy extends Activity {
         buttonAL.add(fourth);
 
         obrazky = new ArrayList<>();
-        obrazky.add(R.drawable.bezstavovce_acropora_millepora);
-        obrazky.add(R.drawable.bezstavovce_dazdovka);
-        obrazky.add(R.drawable.bezstavovce_meduza_vlasata);
-        obrazky.add(R.drawable.bezstavovce_motolica_pecenova);
-        obrazky.add(R.drawable.bezstavovce_pasomnica_dlha);
-        obrazky.add(R.drawable.bezstavovce_perovnik);
-        obrazky.add(R.drawable.bezstavovce_pijavica_lekarska);
-        obrazky.add(R.drawable.bezstavovce_ploskula_mliecna);
-        obrazky.add(R.drawable.bezstavovce_rak_riecny);
-        obrazky.add(R.drawable.bezstavovce_skebla_rybnicna);
-        obrazky.add(R.drawable.bezstavovce_stvorhranka_smrtelna);
-        obrazky.add(R.drawable.bezstavovce_terebellidae);
+        obrazky.add(R.drawable.org_beloritka_obycajna);
+        obrazky.add(R.drawable.org_kliest_obycajny);
+        obrazky.add(R.drawable.org_komar_pisklavy);
+        obrazky.add(R.drawable.org_kutnik_domovy);
+        obrazky.add(R.drawable.org_lastovicka_obycajna);
+        obrazky.add(R.drawable.org_mola_satova);
+        obrazky.add(R.drawable.org_mucha_domova);
+        obrazky.add(R.drawable.org_muciar_obycajny);
+        obrazky.add(R.drawable.org_mys_domova);
+        obrazky.add(R.drawable.org_osa_obycajna);
+        obrazky.add(R.drawable.org_plamienka_driemava);
+        obrazky.add(R.drawable.org_potemnik_skladovy);
+        obrazky.add(R.drawable.org_potkan_hnedy);
+        obrazky.add(R.drawable.org_rus_domovy);
+        obrazky.add(R.drawable.org_svab_obycajny);
+        obrazky.add(R.drawable.org_svehla_obycajna);
+        obrazky.add(R.drawable.org_vijacka_domova);
+        obrazky.add(R.drawable.org_zakozka_svrabova);
 
         nazvy = new ArrayList<>();
-        nazvy.add("Acropora Millepora");
-        nazvy.add("Dážďovka");
-        nazvy.add("Medúza Vlasatá");
-        nazvy.add("Motolica Pečeňová");
-        nazvy.add("Pásomnica Dlhá");
-        nazvy.add("Perovník");
-        nazvy.add("Pijavica Lekárska");
-        nazvy.add("Ploskula Mliečna");
-        nazvy.add("Rak Riečny");
-        nazvy.add("Šekbla Rybničná");
-        nazvy.add("Štvorhranka Smrteľná");
-        nazvy.add("Terebellidae");
+        nazvy.add("Beloritka obyčajná");
+        nazvy.add("Kliešť obyčajný");
+        nazvy.add("Komár piskľavý");
+        nazvy.add("Kútnik domový");
+        nazvy.add("Lastovička obyčajná");
+        nazvy.add("Mola šatová");
+        nazvy.add("Mucha domová");
+        nazvy.add("Múčiar obyčajný");
+        nazvy.add("Myš domová");
+        nazvy.add("Osa obyčajná");
+        nazvy.add("Plamienka driemavá");
+        nazvy.add("Potemník skladový");
+        nazvy.add("Potkan Hnedý");
+        nazvy.add("Rus domový");
+        nazvy.add("Šváb obyčajný");
+        nazvy.add("Švehla obyčajná");
+        nazvy.add("Vijačka domová");
+        nazvy.add("Zákožka svrabová");
 
         randnazvy = new ArrayList<>();
-        randnazvy.add("Acropora Millepora");
-        randnazvy.add("Dážďovka");
-        randnazvy.add("Medúza Vlasatá");
-        randnazvy.add("Motolica Pečeňová");
-        randnazvy.add("Pásomnica Dlhá");
-        randnazvy.add("Perovník");
-        randnazvy.add("Pijavica Lekárska");
-        randnazvy.add("Ploskula Mliečna");
-        randnazvy.add("Rak Riečny");
-        randnazvy.add("Šekbla Rybničná");
-        randnazvy.add("Štvorhranka Smrteľná");
-        randnazvy.add("Terebellidae");
-        randnazvy.add("Krtko");
-        randnazvy.add("Slimák");
-        randnazvy.add("Osa");
-        randnazvy.add("Kresáňová");
-        randnazvy.add("Martinkovičová");
-        randnazvy.add("Zemiak");
-        randnazvy.add("kôň");
-        randnazvy.add("antilopa");
-        randnazvy.add("medveď");
-        randnazvy.add("Hlavinková");
-        randnazvy.add("Pes");
-        randnazvy.add("Tvoja mama");
-        randnazvy.add("Moja mama");
+        nazvy.add("Beloritka obyčajná");
+        nazvy.add("Kliešť obyčajný");
+        nazvy.add("Komár piskľavý");
+        nazvy.add("Kútnik domový");
+        nazvy.add("Lastovička obyčajná");
+        nazvy.add("Mola šatová");
+        nazvy.add("Mucha domová");
+        nazvy.add("Múčiar obyčajný");
+        nazvy.add("Myš domová");
+        nazvy.add("Osa obyčajná");
+        nazvy.add("Plamienka driemavá");
+        nazvy.add("Potemník skladový");
+        nazvy.add("Potkan Hnedý");
+        nazvy.add("Rus domový");
+        nazvy.add("Šváb obyčajný");
+        nazvy.add("Švehla obyčajná");
+        nazvy.add("Vijačka domová");
+        nazvy.add("Zákožka svrabová");
+
+        nazvy.add("Orol skalný");
+        nazvy.add("Mravec lesný");
+        nazvy.add("Včela medonosná");
+        nazvy.add("Pijavica lekárska");
+        nazvy.add("Ďateľ veľký");
+        nazvy.add("Medveď hnedý");
+        nazvy.add("Vlk dravý");
+        nazvy.add("Kobylka lúčna");
+        nazvy.add("Veľryba biela");
+        nazvy.add("Bzdocha obyčajná");
+        nazvy.add("Sova lesná");
+        nazvy.add("Kôň domáci");
+        nazvy.add("Brokolica");
+        nazvy.add("Ropucha obrovská");
+        nazvy.add("Mlok bodkovaný");
+        nazvy.add("Medúza ušatá");
+        nazvy.add("Dážďovka");
+        nazvy.add("Mrkva obyčajná");
 
         ///↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ priradovanie do arraye ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑///
 
@@ -198,6 +226,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -208,6 +238,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -297,6 +329,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -307,6 +341,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -398,6 +434,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -408,6 +446,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -500,6 +540,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -510,6 +552,8 @@ public class Organizmy extends Activity {
                                 theGame();
                             } else {
                                 Intent score = new Intent(Organizmy.this, Score.class);
+                                score.putExtra("size", imageCount);
+                                
                                 Organizmy.this.finish();
                                 startActivity(score);
                             }
@@ -552,6 +596,8 @@ public class Organizmy extends Activity {
                     theGame();
                 } else {
                     Intent score = new Intent(Organizmy.this, Score.class);
+                    score.putExtra("size", imageCount);
+                    
                     Organizmy.this.finish();
                     startActivity(score);
                 }
